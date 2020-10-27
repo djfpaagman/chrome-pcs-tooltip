@@ -1,0 +1,15 @@
+div.pcs-chrome--tooltip-container {
+  display: inline;
+  position: fixed;
+  z-index: 9999;
+}
+
+div.pcs-chrome--tooltip {
+  position: absolute;
+  top: 20px;
+  width: 400px;
+  background-color: white;
+  border: 1px solid black;
+  padding: 20px;
+  z-index: 99999;
+}

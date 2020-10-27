@@ -1,0 +1,17 @@
+{
+  "name": "chrome-pcs-tooltips",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "browserify src/pcs-tooltip.js -o pcs-tooltip.js",
+    "watch": "watchify src/pcs-tooltip.js -o pcs-tooltip.js"
+  },
+  "dependencies": {
+    "lodash.debounce": "^4.0.8"
+  },
+  "devDependencies": {
+    "browserify": "^17.0.0",
+    "watchify": "^3.11.1"
+  }
+}
