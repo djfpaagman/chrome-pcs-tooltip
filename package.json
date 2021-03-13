@@ -1,11 +1,11 @@
 {
   "name": "chrome-pcs-tooltips",
-  "version": "1.0.0",
+  "version": "0.2",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "esbuild src/pcs-tooltip.js --outfile=pcs-tooltip.js --bundle --minify",
-    "watch": "esbuild src/pcs-tooltip.js --outfile=pcs-tooltip.js --bundle --watch",
+    "build": "esbuild src/pcs-tooltip.js --outfile=dist/pcs-tooltip.js --bundle --minify",
+    "watch": "esbuild src/pcs-tooltip.js --outfile=dist/pcs-tooltip.js --bundle --watch",
     "lint": "eslint src/*.js"
   },
   "dependencies": {

@@ -1,11 +1,12 @@
 
 {
   "manifest_version": 2,
-  "name": "ProCyclingStats rider tooltips",
-  "short_name": "PCS Rider tooltips",
-  "description": "Adds a on hover tooltip with more info of riders",
+  "name": "ProCyclingStats Rider Tooltip",
+  "short_name": "PCS Tooltip",
+  "description": "Adds a on hover tooltip with more info of riders.",
   "version": "0.2",
   "author": "Dennis Paagman",
+  "homepage_url": "https://github.com/djfpaagman/chrome-pcs-tooltip",
   "content_scripts": [
     {
       "matches": ["https://www.procyclingstats.com/*"],
