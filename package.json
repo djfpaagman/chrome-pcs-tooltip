@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "esbuild src/pcs-tooltip.js --outfile=pcs-tooltip.js --bundle",
+    "build": "esbuild src/pcs-tooltip.js --outfile=pcs-tooltip.js --bundle --minify",
     "watch": "esbuild src/pcs-tooltip.js --outfile=pcs-tooltip.js --bundle --watch",
     "lint": "eslint src/*.js"
   },
