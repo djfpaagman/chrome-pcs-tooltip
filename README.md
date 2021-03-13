@@ -1,15 +1,20 @@
 # PCS Tooltip
 
-Adds a tooltip that loads rider information. Not affilliated with ProCyclingStats.
+Adds a tooltip to [ProCyclingStats.com][1] that loads rider information when hovering over their name. Useful when you
+are following the live stats and want to know who is in the breakaway or when you are scanning the results list.
+
+Not affilliated with ProCyclingStats.
+
+![image](https://user-images.githubusercontent.com/170034/111041326-0319f580-8438-11eb-8ed8-389a834362ba.png)
 
 ## Installation instructions
-This extension is not published on the Chrome extension store. Clone the repository
-and [load it as an unpacked extension][1].
+This extension is not published on the Chrome extension store. Clone the repository, build the source,
+and [load it as an unpacked extension][2].
 
 ## Development
 * `yarn install`.
-* Load the directory as an unpacked extension.
 * `yarn watch` to (re)build the javascript automatically when making changes.
+* Load the directory as an unpacked extension.
 * `yarn lint` to lint your JS.
 
 ## Contributing
@@ -22,4 +27,5 @@ and [load it as an unpacked extension][1].
 ## License
 All code is licensed under the [MIT license](LICENSE).
 
-[1]: https://developer.chrome.com/extensions/getstarted#load
+[1]: https://www.procyclingstats.com/
+[2]: https://developer.chrome.com/extensions/getstarted#load
