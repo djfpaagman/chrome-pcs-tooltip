@@ -1,66 +1,74 @@
-var debounce = require('lodash.debounce')
+const debounce = require('lodash.debounce');
 
 function addTooltip(link) {
-  const controller = new AbortController()
-  const {
-    signal
-  } = controller
+  // todo move to generic one
+  const controller = new AbortController();
+  const { signal } = controller;
 
-  // remove all other tooltips
-  document.querySelectorAll(".pcs-chrome--tooltip-container").forEach(el => el.remove())
+  document.querySelectorAll('.pcs-chrome--tooltip-container').forEach((el) => el.remove());
 
-  let container = document.createElement("div")
-  container.classList.add("pcs-chrome--tooltip-container")
+  const container = document.createElement('div');
+  container.classList.add('pcs-chrome--tooltip-container');
 
-  let tooltip = document.createElement("div")
-  tooltip.classList.add("pcs-chrome--tooltip")
+  const tooltip = document.createElement('div');
+  tooltip.classList.add('pcs-chrome--tooltip');
 
-  container.appendChild(tooltip)
-  link.insertAdjacentElement('beforebegin', container)
+  const loader = document.createElement('div');
+  loader.classList.add('lds-ring');
 
-  link.addEventListener("mouseout", () => {
-    controller.abort()
-    container.remove()
+  loader.appendChild(document.createElement('div'));
+  loader.appendChild(document.createElement('div'));
+  loader.appendChild(document.createElement('div'));
+
+  tooltip.appendChild(loader);
+  container.appendChild(tooltip);
+
+  const rect = link.getBoundingClientRect();
+  const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+  container.style.top = `${rect.top + scrollTop + (link.clientHeight === 0 ? 16 : link.clientHeight + 10)}px`;
+  container.style.left = `${rect.left + scrollLeft}px`;
+
+  document.body.appendChild(container);
+
+  link.addEventListener('mouseout', () => {
+    controller.abort();
+    container.remove();
   }, {
-    once: true
-  })
+    once: true,
+  });
 
-  fetch(link.href, {
-      signal
+  fetch(link.href, { signal })
+    .then((response) => response.text())
+    .then((page) => {
+      const parser = new DOMParser();
+      const riderDom = parser.parseFromString(page, 'text/html');
+      const photo = riderDom.querySelector('.rdr-img-cont');
+      const profile = riderDom.querySelector('.rdr-info-cont');
+
+      tooltip.innerHTML = photo.innerHTML + profile.innerHTML;
     })
-    .then(response => response.text())
-    .then(page => {
-      let parser = new DOMParser()
-      let rider = parser.parseFromString(page, "text/html")
-      let profile = rider.querySelector(".rdr-info")
-
-      // Remove header
-      profile.querySelector("h3").remove()
-
-      tooltip.innerHTML = profile.innerHTML
-    })
-    .catch(e => console.log(e))
+    .catch((e) => console.log(e));
 }
 
-let debouncedAddTooltip = debounce(addTooltip, 500)
+const debouncedAddTooltip = debounce(addTooltip, 500);
 
-document.addEventListener("mouseover", (e) => {
-  var target;
+document.addEventListener('mouseover', (e) => {
+  if (!e.target) return;
 
-  if (e.target && e.target.matches("a[href^=rider]")) {
-    target = e.target
-  } else if (e.target && e.target.parentNode.matches("a[href^=rider]")) {
-    target = e.target.parentNode
+  let target;
+
+  if (e.target.matches('a[href^=rider]')) {
+    target = e.target;
   }
 
-  if (target) {
-    debouncedAddTooltip(target)
-
-    e.target.addEventListener("mouseout", (e) => {
-      debouncedAddTooltip.cancel
-    }, {
-      once: true
-    })
+  if (e.target.parentNode && e.target.parentNode.matches('a[href^=rider]')) {
+    target = e.target.parentNode;
   }
-}
-)
+
+  if (!target) return;
+
+  debouncedAddTooltip(target);
+  target.addEventListener('mouseout', debouncedAddTooltip.cancel, { once: true });
+});

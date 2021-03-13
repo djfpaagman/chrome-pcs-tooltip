@@ -5,13 +5,17 @@
   "license": "MIT",
   "scripts": {
     "build": "browserify src/pcs-tooltip.js -o pcs-tooltip.js",
-    "watch": "watchify src/pcs-tooltip.js -o pcs-tooltip.js"
+    "watch": "watchify src/pcs-tooltip.js -o pcs-tooltip.js",
+    "lint": "eslint src/*.js"
   },
   "dependencies": {
     "lodash.debounce": "^4.0.8"
   },
   "devDependencies": {
     "browserify": "^17.0.0",
+    "eslint": "^7.22.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
     "watchify": "^3.11.1"
   }
 }

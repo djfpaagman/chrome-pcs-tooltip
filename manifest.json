@@ -4,7 +4,7 @@
   "name": "ProCyclingStats rider tooltips",
   "short_name": "PCS Rider tooltips",
   "description": "Adds a on hover tooltip with more info of riders",
-  "version": "0.1",
+  "version": "0.2",
   "author": "Dennis Paagman",
   "content_scripts": [
     {
