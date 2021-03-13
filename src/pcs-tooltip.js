@@ -1,4 +1,4 @@
-const debounce = require('lodash.debounce');
+import debounce from 'lodash.debounce';
 
 function addTooltip(link) {
   // todo move to generic one

@@ -4,15 +4,15 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "browserify src/pcs-tooltip.js -o pcs-tooltip.js",
-    "watch": "watchify src/pcs-tooltip.js -o pcs-tooltip.js",
+    "build": "esbuild src/pcs-tooltip.js --outfile=pcs-tooltip.js --bundle",
+    "watch": "esbuild src/pcs-tooltip.js --outfile=pcs-tooltip.js --bundle --watch",
     "lint": "eslint src/*.js"
   },
   "dependencies": {
     "lodash.debounce": "^4.0.8"
   },
   "devDependencies": {
-    "browserify": "^17.0.0",
+    "esbuild": "^0.9.2",
     "eslint": "^7.22.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
